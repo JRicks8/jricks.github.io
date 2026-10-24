@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "[ Devlog 1 ] The first step is also the most enjoyable"
+date:   2026-10-24
+categories: devlog
+---
+## Starting a Project
+Recently I've found myself wanting to start something new. Preferably something that I'd actually finish this time, naturally. It's always been hard to finish projects.
+
+So I decided that I'd make a video game. I've been living, breathing, watching, and yes, even *playing* video games for most of my life. I also have the benefit of being a halfway-decent computer programmer, so I'm not going in completely blind on that front. All of the other things like art, music, sfx, vfx, modeling, writing... I'll be blind.
+Shouldn't be too hard, right?
+
+And I *do* want to finish this project. This blog is one of those things that will hold me to it. I've also told everyone I know that I'll be making a game. I'm basically setting myself up to either succeed and make a game or bear the embarassment of failing to deliver on a promise.
+
+It's incredibly easy to start projects. I have a graveyard of folders in my computer to prove it. The first month is so electric. There are so many ideas that it's trivial to grab one and start running. But planning ahead is hard for any situation where the future is uncertain, which is especially true for game development. Ideas get stifled by reality and the flame of passion that fuels them gets snuffed out just as quickly as it was lit. For myself, that point usually comes around when I have to make art. I just have too high standards, and too little patience for it.
+
+This time, I intend to be more slow and methodical. Go into this project with completion in mind, making a prototype before implementation. Picking ideas carefully and acknowledging my timeline and limitations. Documenting things that work, making decisions and sticking with them. Budgeting my motivation, and not working on the game all night because I had a sudden burst of motivation.
+
+With all of that in mind, I'm going to make a video game.
+
+## The Project
+So here's the pitch:
+
+It's a game where you buy and sell goods to trade between scattered villages, building relationships with the characters you meet in them. You play as a bird in a world where birds cannot fly, and the only way to travel between the villages is by airship.
+
+The core motivations of this game would be story and exploration, with skill mastery as a smaller third. Interacting with the characters in each village and exploring everything that this world has to offer through an airship is pretty compelling. The skill mastery would come about through piloting the airship and knowledge of the game area. It is, at least, a game that I would want to play, and it sounds fun.
+
+The brainstorming sessions that I've had in planning this game have been extremely fruitful. The environment being a huge canyon, massive scattered sea stacks, or just being above the clouds entirely were all ideas thrown around. A steampunk aesthetic, multiplayer, and accompanying robots were some more ideas. But at this stage, I feel the most important things to nail down is the very core of the experience.
+
+The prototype for this game will look like this:
+- Playable character
+- Orbit camera, 3rd person
+- Can zoom to 1st person
+- Dirigible
+- Items to carry and place, affected by physics
+- Pickup & dropoff point
+
+As of this point, I've got the first three points down, but the airship has proven troublesome. Godot (the game engine I intend to use) does not have great tools for physics joints to simulate an airship, where the balloon is tethered to the body with rope. I think this is **VERY** important for this prototype, so I want to get it right. I'm looking at my options and seeing what I can do.
+
+And that's about it for the first week! It's been fun so far. The goal next week is to have the prototype done.
