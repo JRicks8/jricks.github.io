@@ -1,0 +1,66 @@
+---
+layout: post
+title:  "[ Devlog 2 ] We have liftoff!"
+date:   2026-10-31
+categories: devlog
+---
+## Prototype
+I'm very happy to say that I finished a *very* basic prototype for the game. It has:
+- Playable character
+- Orbit camera, 3rd person
+- Can zoom to 1st person
+- Dirigible
+- Items to carry and place, affected by physics
+- Pickup & dropoff point
+
+Which is conveniently exactly the things that I wanted to achieve last week, so I'm very happy with myself. I anticipated the prototype taking longer than my initial guess (1 week) so I gave myself twice the time. I suspect this will end up being a trend.
+
+## Simulating Airships
+Creating the physics for the ropes were particularly challenging. I felt that it was important that the airship felt physically *real*, in that it visibly reacted to turning, thrust, and even jumping on and off. This was going to take a little more than the run-of-the-mill physics joints that Godot provides, which are admittedly lackluster. They don't have adjustable attachment points, stiffness, damping, or really any configurability at all.
+
+Then a plugin called [Verlet Rope 4](https://godotengine.org/asset-library/asset/2308) came in handy! Since my project is using GDScript and not .NET, I had to re-write the codebase. I was a little hesitant at first, but I'm really glad I did. I'm much more confident with Godot plugins and GDScript in general. As a little bonus the plugin comes with rope rendering, which makes my box-and-capsule airship look pretty neat with ropes!
+
+{:refdef: style="text-align: center;"}
+![My Airship](/assets/images/proto_airship.png)
+{: refdef}
+
+"Neat" might be an overstatement, nothing about this is pretty yet. I'll get to that next week.
+
+To fly, the airship applies a negative gravity scaling to the balloon, and any thrust/torque is also applied to the balloon. The ropes drag along the body and whatever is sitting on top.
+
+## Simulating The Character
+Unfortunately, the built-in character controller did not play nicely with the simulated airship. The character by default is **not** affected by any other physics bodies, which means the airship could not lift the player. This was a total dealbreaker, so I had to make my own solution.
+
+I've made physics-based controllers in the past, although this case was a little different. I needed to make sure that the character's velocity properly matched the ground they were standing on, so I couldn't modify the velocity directly. I'd end up overriding the forces that other physics bodies in the world has on the player (the airship, for instance). I opted for a force-based approach. This controller has:
+- Force application based on player input
+- Turn assistance
+- Slope detection
+- Dynamic friction based on state (increased if no input)
+- Inherited velocity of floor
+- Different ground/air force multipliers
+
+I'm happy with how it turned out.
+
+{:refdef: style="text-align: center;"}
+![Moving Around](/assets/images/proto_movement.gif)
+{: refdef}
+
+## Flying Around
+The ropes are a little bit too springy for my taste, but it's not altogether too bad. Overall, I'm happy with how this feels. There's definitely room for improvement and fine-tuning in the future.
+
+{:refdef: style="text-align: center;"}
+![Lift Off](/assets/images/proto_liftoff.gif)
+{: refdef}
+I ended up having a rough landing...
+{:refdef: style="text-align: center;"}
+![Rough Landing](/assets/images/proto_landing.gif)
+{: refdef}
+
+Right now there's a lot of skill expression in navigating the airship properly, which is fun, but flying around feels pretty slow and clunky. It's certainly worth exploring making the dirigible a little more reactive. I am afraid of making the navigation *too* easy though. It would trivialize one of the core mechanics of the game! I don't want this to be a hardcore game with a steep learning curve, but I want there to *be* a learning curve. I'll have to find that balance somewhere down the line.
+
+Something interesting that I noticed was that the cargo was actually causing the airship to be pulled down at the back, causing the whole thing to fly at a slant. This could be interesting in gameplay, where an imbalanced load of cargo can cause the balloon to go down!
+
+## Next Week
+I want to start working on the main character. These prototypes look a lot better with something nice to look at, and why not make that "nice" thing the main character?
+
+I'll have a model rigged and animated, at the very least. Stretch goal is to have the character in the game, fully reacting to its movement.
